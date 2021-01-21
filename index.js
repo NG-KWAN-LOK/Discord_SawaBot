@@ -129,7 +129,7 @@ function stop(message, serverQueue) {
   console.log("stop but not songs");
   serverQueue.textChannel.send(`皮已收`);
   serverQueue.voiceChannel.leave();
-  //serverQueue.connection.dispatcher.end();
+  serverQueue.connection.dispatcher.end();
 }
 
 function play(guild, song) {
@@ -139,6 +139,7 @@ function play(guild, song) {
     serverQueue.voiceChannel.leave();
     serverQueue.textChannel.send(`全部歌曲已播放完畢`);
     queue.delete(guild.id);
+    serverQueue.connection.dispatcher.end();
     return;
   }
 
