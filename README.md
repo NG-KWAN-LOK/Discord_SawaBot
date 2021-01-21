@@ -10,7 +10,7 @@ The bot message using cantonese chinese.
 *list：list the queue
 *h：function key table
 *test：return the bot is alive
-delay:return the ping
+*delay:return the ping
 ```
 ## Installation
 
