@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm i"
+    "start": "node index.js"
   },
   "author": "NG KWAN LOK",
   "license": "ISC",
