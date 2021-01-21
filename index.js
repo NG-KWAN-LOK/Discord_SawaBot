@@ -43,6 +43,10 @@ client.on("message", async (message) => {
   } else if (message.content === `${prefix}h`) {
     help(message, serverQueue);
     return;
+  } else if (message.content === `${prefix}delay`) {
+    console.log(client);
+    message.channel.send(`延遲：**${client.ws.ping}ms** !`);
+    return;
   } else {
     message.channel.send("唔知你打乜L野! 打「*h」睇下有乜指令先!");
   }
@@ -115,10 +119,13 @@ function stop(message, serverQueue) {
   if (!message.member.voice.channel)
     return message.channel.send("你要系語音頻道度先可以停止播歌!");
 
-  if (!serverQueue || !serverQueue.songs)
+  if (!serverQueue || !serverQueue.songs) {
+    console.log("stop but not songs");
     return message.channel.send("冇歌俾你stop喇!");
+  }
   queue.clear();
   isStop = true;
+  console.log("stop but not songs");
   serverQueue.textChannel.send(`皮已收`);
   serverQueue.voiceChannel.leave();
   //serverQueue.connection.dispatcher.end();
