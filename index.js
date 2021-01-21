@@ -37,10 +37,12 @@ client.on("message", async (message) => {
     playlist(message, serverQueue);
     return;
   } else if (message.content === `${process.env.prefix}test`) {
-    test(message, serverQueue);
+    message.channel.send(`我仲系度!`);
     return;
   } else if (message.content === `${process.env.prefix}h`) {
-    help(message, serverQueue);
+    message.channel.send(
+      `SawaBot -- by:Sawajiri; Github:NG-KWAN-LOK\n指令表：\n*p (url)：播歌/加啲歌入播放隊列\n*stop：叫個bot收皮\n*skip：skip咗依家播緊果首歌\n*list：列出播放清單有乜野歌\n*h：指令表\n*test：睇下個bot仲系唔系度\n*delay：睇下ping數`
+    );
     return;
   } else if (message.content === `${process.env.prefix}delay`) {
     console.log(client);
@@ -163,19 +165,5 @@ function playlist(message, serverQueue) {
     });
     serverQueue.textChannel.send(listString);
   }
-}
-
-function test(message, serverQueue) {
-  if (!message.member.voice.channel)
-    return message.channel.send("你只可以系語音頻道執行依個指令");
-  console.log(serverQueue);
-  serverQueue.textChannel.send(`我仲系度!`);
-}
-function help(message, serverQueue) {
-  if (!message.member.voice.channel)
-    return message.channel.send("你只可以系語音頻道執行依個指令");
-  serverQueue.textChannel.send(
-    `SawaBot -- by:Sawajiri; Github:NG-KWAN-LOK\n指令表：\n*p (url)：播歌/加啲歌入播放隊列\n*stop：叫個bot收皮\n*skip：skip咗依家播緊果首歌\n*list：列出播放清單有乜野歌\n*h：指令表\n*test：睇下個bot仲系唔系度\n*delay：睇下ping數`
-  );
 }
 client.login(process.env.token);
