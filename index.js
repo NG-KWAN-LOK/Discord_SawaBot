@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const { prefix, token } = require("./config.json");
 const ytdl = require("ytdl-core");
 
 const client = new Discord.Client();
@@ -21,29 +20,29 @@ client.once("disconnect", () => {
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(process.env.prefix)) return;
 
   const serverQueue = queue.get(message.guild.id);
 
-  if (message.content.startsWith(`${prefix}p`)) {
+  if (message.content.startsWith(`${process.env.prefix}p`)) {
     execute(message, serverQueue);
     return;
-  } else if (message.content.startsWith(`${prefix}skip`)) {
+  } else if (message.content.startsWith(`${process.env.prefix}skip`)) {
     skip(message, serverQueue);
     return;
-  } else if (message.content === `${prefix}stop`) {
+  } else if (message.content === `${process.env.prefix}stop`) {
     stop(message, serverQueue);
     return;
-  } else if (message.content === `${prefix}list`) {
+  } else if (message.content === `${process.env.prefix}list`) {
     playlist(message, serverQueue);
     return;
-  } else if (message.content === `${prefix}test`) {
+  } else if (message.content === `${process.env.prefix}test`) {
     test(message, serverQueue);
     return;
-  } else if (message.content === `${prefix}h`) {
+  } else if (message.content === `${process.env.prefix}h`) {
     help(message, serverQueue);
     return;
-  } else if (message.content === `${prefix}delay`) {
+  } else if (message.content === `${process.env.prefix}delay`) {
     console.log(client);
     message.channel.send(`延遲：**${client.ws.ping}ms** !`);
     return;
@@ -179,4 +178,4 @@ function help(message, serverQueue) {
     `指令表：\n*p (url)：播歌/加啲歌入播放隊列\n*stop：叫個bot收皮\n*skip：skip咗依家播緊果首歌\n*list：列出播放清單有乜野歌\n*h：指令表\n*test：睇下個bot仲系唔系度`
   );
 }
-client.login(token);
+client.login(process.env.token);
