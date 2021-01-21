@@ -4,8 +4,7 @@
   "description": "discord bot by NG KWAN LOK",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NG KWAN LOK",
   "license": "ISC",
