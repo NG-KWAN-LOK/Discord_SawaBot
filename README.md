@@ -1,7 +1,7 @@
 # Discord_SawaBot
 https://discord.com/api/oauth2/authorize?client_id=801768804148314113&permissions=3287040&scope=bot
 
-The bot is deploy on heroku.
+The bot is deploying on heroku.
 This is a discord music bot.
 The bot message using cantonese chinese.
 ## bot function keys
