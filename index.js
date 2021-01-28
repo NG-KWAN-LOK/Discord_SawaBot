@@ -1,4 +1,4 @@
-const { prefix, token } = require("./config.json");
+//const { process.env.prefix, process.env.token } = require("./config.json");
 const fs = require("fs");
 const Discord = require("discord.js");
 
@@ -47,12 +47,12 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 client.on("message", async (message) => {
-  const args = message.content.slice(prefix.length).split(/ +/);
+  const args = message.content.slice(process.env.prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
   const command = client.commands.get(commandName);
 
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(process.env.prefix)) return;
 
   try {
     if (commandName == "ban" || commandName == "userinfo") {
@@ -66,4 +66,4 @@ client.on("message", async (message) => {
   }
 });
 
-client.login(token);
+client.login(process.env.token);
