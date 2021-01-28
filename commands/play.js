@@ -4,7 +4,7 @@ module.exports = {
   description: "Play a song in your channel!",
   async execute(message) {
     try {
-      console.log(message.client);
+      //console.log(message.client);
       const queue = message.client.queue;
       const args = message.content.split(" ");
       const serverQueue = message.client.queue.get(message.guild.id);

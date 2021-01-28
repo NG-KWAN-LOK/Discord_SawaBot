@@ -1,4 +1,4 @@
-//const { process.env.prefix, token } = require("./config.json");
+const { prefix, token } = require("./config.json");
 const fs = require("fs");
 const Discord = require("discord.js");
 
@@ -27,7 +27,7 @@ console.log(client.activitys);
 client.once("ready", async () => {
   console.log("Ready!");
   setActivity();
-  setInterval(setActivity, 1000 * 60 * 15);
+  setInterval(setActivity, 1000 * 60);
 });
 
 function setActivity() {
@@ -47,12 +47,12 @@ client.once("disconnect", () => {
   console.log("Disconnect!");
 });
 client.on("message", async (message) => {
-  const args = message.content.slice(process.env.prefix.length).split(/ +/);
+  const args = message.content.slice(prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
   const command = client.commands.get(commandName);
 
   if (message.author.bot) return;
-  if (!message.content.startsWith(process.env.prefix)) return;
+  if (!message.content.startsWith(prefix)) return;
 
   try {
     if (commandName == "ban" || commandName == "userinfo") {
@@ -66,4 +66,4 @@ client.on("message", async (message) => {
   }
 });
 
-client.login(process.env.token);
+client.login(token);
