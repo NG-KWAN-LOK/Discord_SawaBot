@@ -13,7 +13,7 @@ module.exports = {
       "你系度打飛機",
     ];
     const activitysID = Math.floor(Math.random() * activitys.length);
-    const activitysContent = activitys[activitysID] + " | *help";
+    const activitysContent = activitys[activitysID] + " | *h";
     try {
       client.user.setActivity(activitysContent, { type: "LISTENING" });
       console.log(activitysID, activitysContent);

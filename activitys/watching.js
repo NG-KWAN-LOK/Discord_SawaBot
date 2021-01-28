@@ -17,7 +17,7 @@ module.exports = {
     const activitysID = Math.floor(Math.random() * activitys.length);
     const activitysContent = activitys[activitysID];
     try {
-      client.user.setActivity(activitysContent + " | *help", {
+      client.user.setActivity(activitysContent + " | *h", {
         type: "WATCHING",
       });
       console.log(activitysID, activitysContent);
