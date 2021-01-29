@@ -8,7 +8,9 @@ module.exports = {
       const args = message.content.split(" ");
       const numberExpression = /^\d+$/;
       if (!message.member.voice.channel) {
-        console.log("need at voice to check playlist");
+        console.log(
+          message.author.username + " need at voice to check playlist"
+        );
         const errorEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`請先進入一個語音頻道!`)
@@ -20,7 +22,7 @@ module.exports = {
         return message.channel.send(errorEmbed);
       }
       if (!serverQueue || !serverQueue.songs) {
-        console.log("playlist no sound");
+        console.log(message.author.username + " playlist no sound");
         const errorEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`請先打「*p (url)」加歌曲到播放清單`)
@@ -31,7 +33,7 @@ module.exports = {
           );
         message.channel.send(errorEmbed);
       } else if (!numberExpression.test(args[1])) {
-        console.log("delete song but not number");
+        console.log(message.author.username + " delete song but not number");
         const errorEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`打「*list」查下播放清單入面有乜歌`)

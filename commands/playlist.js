@@ -6,7 +6,9 @@ module.exports = {
     try {
       const serverQueue = message.client.queue.get(message.guild.id);
       if (!message.member.voice.channel) {
-        console.log("need at voice to check playlist");
+        console.log(
+          message.author.username + " need at voice to check playlist"
+        );
         const errorEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`請先進入一個語音頻道`)
@@ -18,7 +20,7 @@ module.exports = {
         return message.channel.send(errorEmbed);
       }
       if (!serverQueue || !serverQueue.songs) {
-        console.log("playlist no sound");
+        console.log(message.author.username + " playlist no sound");
         const errorEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`請先打「*p (url)」加歌曲到播放清單`)

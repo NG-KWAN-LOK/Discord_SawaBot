@@ -21,6 +21,7 @@ module.exports = {
             "SawaBot"
             //"https://i.imgur.com/wSTFkRM.png"
           );
+        console.log(message.author.username + " play voice channel");
         return message.channel.send(errorEmbed);
       }
       const permissions = voiceChannel.permissionsFor(message.client.user);
@@ -34,6 +35,7 @@ module.exports = {
             "SawaBot"
             //"https://i.imgur.com/wSTFkRM.png"
           );
+        console.log(message.author.username + " play song no permisstion");
         return message.channel.send(errorEmbed);
       }
       channel = message.channel;
@@ -69,7 +71,9 @@ module.exports = {
         }
       } else {
         serverQueue.songs.push(song);
-        console.log("add " + song.title + "to queue");
+        console.log(
+          message.author.username + " add " + song.title + "to queue"
+        );
         const addSongEmbed = new Discord.MessageEmbed()
           .setColor("#FFF148")
           .setDescription(`**[${song.title}](${song.url})**`)

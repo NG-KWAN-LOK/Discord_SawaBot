@@ -15,6 +15,9 @@ module.exports = {
             "SawaBot"
             //"https://i.imgur.com/wSTFkRM.png"
           );
+        console.log(
+          message.author.username + " skip need get in voice channel"
+        );
         return message.channel.send(errorEmbed);
       }
       if (!serverQueue) {
@@ -26,6 +29,7 @@ module.exports = {
             "SawaBot"
             //"https://i.imgur.com/wSTFkRM.png"
           );
+        console.log(message.author.username + " skip no songs");
         return message.channel.send(errorEmbed);
       } else {
         serverQueue.songs.shift();
@@ -53,6 +57,8 @@ module.exports = {
           //"https://i.imgur.com/wSTFkRM.png"
         );
       serverQueue.textChannel.send(errorEmbed);
+      message.react("👌");
+      console.log(message.author.username + " skip song");
       queue.delete(guild.id);
       //serverQueue.connection.dispatcher.end();
       console.log("all songs in queue end");
@@ -68,6 +74,7 @@ module.exports = {
       .on("error", (error) => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
     message.react("👌");
+    console.log(message.author.username + " skip song");
     const playSongEmbed = new Discord.MessageEmbed()
       .setColor("#FFF148")
       .setDescription(`**[${song.title}](${song.url})**`)

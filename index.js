@@ -111,6 +111,7 @@ client.on("message", async (message) => {
         //"https://i.imgur.com/wSTFkRM.png"
       );
     //message.reply("唔知你打乜L野! 打「*h」睇下有乜指令先!");
+    console.log(message.author.username + " wrong command");
     message.reply(errorEmbed);
   }
 });

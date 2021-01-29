@@ -32,7 +32,7 @@ module.exports = {
       }
       //serverQueue.songs = [];
       serverQueue.songs = 0;
-      console.log("stop songs");
+      console.log(message.author.username + " stop songs");
       //serverQueue.textChannel.send(`>>> 皮已收`);
       message.react("👌");
       message.react("🤐");

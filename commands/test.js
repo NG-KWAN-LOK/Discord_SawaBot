@@ -12,6 +12,7 @@ module.exports = {
           "SawaBot"
           //"https://i.imgur.com/wSTFkRM.png"
         );
+      console.log(message.author.username + " check test");
       message.channel.send(testEmbed);
     } catch (error) {
       console.log(error);

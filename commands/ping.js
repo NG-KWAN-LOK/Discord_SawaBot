@@ -37,8 +37,8 @@ module.exports = {
           "SawaBot"
           //"https://i.imgur.com/wSTFkRM.png"
         );
+      console.log(message.author.username + " check ping");
       message.channel.send(pingEmbed);
-      console.log(hostname);
     } catch (error) {
       console.log(error);
       message.channel.send(error.message);
