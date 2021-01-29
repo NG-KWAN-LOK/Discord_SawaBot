@@ -20,5 +20,8 @@
     "fluent-ffmpeg": "^2.1.2",
     "opusscript": "0.0.7",
     "ytdl-core": "^4.4.5"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
