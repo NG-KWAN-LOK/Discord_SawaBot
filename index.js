@@ -32,7 +32,7 @@ client.once("ready", async () => {
 
 function setActivity() {
   //console.log("setActivity");
-  activitysName = Math.floor(Math.random() * Math.floor(3));
+  const activitysName = Math.floor(Math.random() * Math.floor(3));
   const activitys = client.activitys.get(activitysName.toString());
   //const activitys = client.activitys.get("1");
   console.log("setActivity" + activitysName, activitys.description);
