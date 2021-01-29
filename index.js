@@ -59,7 +59,7 @@ console.log(client.activitys);
 client.once("ready", async () => {
   console.log("Ready!");
   setActivity();
-  setInterval(setActivity, 1000);
+  setInterval(setActivity, 1000 * 60 * 4);
 });
 
 function setActivity() {
