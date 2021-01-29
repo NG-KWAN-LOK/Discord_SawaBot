@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 module.exports = {
   name: "del",
   description: "delete the number song!",
@@ -8,14 +9,38 @@ module.exports = {
       const numberExpression = /^\d+$/;
       if (!message.member.voice.channel) {
         console.log("need at voice to check playlist");
-        return message.channel.send("你只可以系語音頻道執行依個指令");
+        const errorEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`請先進入一個語音頻道!`)
+          .setTitle("你只可以系語音頻道執行依個指令!")
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        return message.channel.send(errorEmbed);
       }
       if (!serverQueue || !serverQueue.songs) {
         console.log("playlist no sound");
-        message.channel.send("播放清單入面冇歌!");
+        const errorEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`請先打「*p (url)」加歌曲到播放清單`)
+          .setTitle("播放清單入面冇歌!")
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        message.channel.send(errorEmbed);
       } else if (!numberExpression.test(args[1])) {
         console.log("delete song but not number");
-        return message.reply("幫唔到你喎，你要輸入數字!");
+        const errorEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`打「*list」查下播放清單入面有乜歌`)
+          .setTitle("輸入錯誤!幫唔到你喎，你要輸入數字!")
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        return message.reply(errorEmbed);
       } else {
         console.log(serverQueue.songs.length);
         if (serverQueue.songs.length > parseInt(args[1])) {
@@ -27,9 +52,27 @@ module.exports = {
                 serverQueue.songs.length
               )
             );
-          serverQueue.textChannel.send("已經幫你刪除第" + args[1] + "首");
+          const errorEmbed = new Discord.MessageEmbed()
+            .setColor("#FFF148")
+            .setDescription(`恭喜你先!`)
+            .setTitle("已經幫你刪除第" + args[1] + "首")
+            .setFooter(
+              "SawaBot"
+              //"https://i.imgur.com/wSTFkRM.png"
+            );
+          serverQueue.textChannel.send(errorEmbed);
         } else {
-          return message.reply("幫唔到你喎，搵唔到你果首歌，你咪9打啦!");
+          const errorEmbed = new Discord.MessageEmbed()
+            .setColor("#FFF148")
+            .setDescription(
+              `打「*del (數字)」刪除指定歌曲，打「*list」查下播放清單入面有乜歌`
+            )
+            .setTitle("幫唔到你喎，搵唔到你果首歌!你咪9打啦!")
+            .setFooter(
+              "SawaBot"
+              //"https://i.imgur.com/wSTFkRM.png"
+            );
+          return message.reply(errorEmbed);
         }
       }
     } catch (error) {

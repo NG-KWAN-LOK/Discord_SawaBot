@@ -1,4 +1,5 @@
 const ytdl = require("ytdl-core");
+const Discord = require("discord.js");
 module.exports = {
   name: "p",
   description: "Play a song in your channel!",
@@ -12,12 +13,28 @@ module.exports = {
       const voiceChannel = message.member.voice.channel;
       if (!voiceChannel) {
         console.log("need at the voice channal to play");
-        return message.channel.send("你要系語音頻道度先可以播歌!");
+        const errorEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`請先進入一個語音頻道!`)
+          .setTitle("你要系語音頻道度先可以播歌!")
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        return message.channel.send(errorEmbed);
       }
       const permissions = voiceChannel.permissionsFor(message.client.user);
       if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
         console.log("need permisstion to join and speak");
-        return message.channel.send("我要權限加入依個頻道同系依個頻道度講野");
+        const errorEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`請設定頻道權限俾我!`)
+          .setTitle("我要權限加入依個頻道同系依個頻道度講野!")
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        return message.channel.send(errorEmbed);
       }
       channel = message.channel;
       const songInfo = await ytdl.getInfo(args[1]);
@@ -53,7 +70,21 @@ module.exports = {
       } else {
         serverQueue.songs.push(song);
         console.log("add " + song.title + "to queue");
-        return message.channel.send(`${song.title} 已加入到播放隊列!`);
+        const addSongEmbed = new Discord.MessageEmbed()
+          .setColor("#FFF148")
+          .setDescription(`**[${song.title}](${song.url})**`)
+          .setTitle("已加入到播放隊列!")
+          //.setURL("https://discord.js.org/")
+          // .setAuthor(
+          //   "SawaBot"
+          //   //"https://i.imgur.com/wSTFkRM.png",
+          //   //"https://discord.js.org"
+          // )
+          .setFooter(
+            "SawaBot"
+            //"https://i.imgur.com/wSTFkRM.png"
+          );
+        return message.channel.send(addSongEmbed);
       }
     } catch (error) {
       console.log(error);
@@ -67,7 +98,15 @@ module.exports = {
     console.log(guild, guild.id);
     if (!song) {
       serverQueue.voiceChannel.leave();
-      serverQueue.textChannel.send(`全部歌曲已播放完畢`);
+      const errorEmbed = new Discord.MessageEmbed()
+        .setColor("#FFF148")
+        .setDescription(`打「*p (url)」再次召喚我嚟播歌`)
+        .setTitle("全部歌曲已播放完畢!")
+        .setFooter(
+          "SawaBot"
+          //"https://i.imgur.com/wSTFkRM.png"
+        );
+      serverQueue.textChannel.send(errorEmbed);
       queue.delete(guild.id);
       //serverQueue.connection.dispatcher.end();
       console.log("all songs in queue end");
@@ -82,7 +121,21 @@ module.exports = {
       })
       .on("error", (error) => console.error(error));
     dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    serverQueue.textChannel.send(`依家播放: **${song.title}**`);
+    const playSongEmbed = new Discord.MessageEmbed()
+      .setColor("#FFF148")
+      .setDescription(`**[${song.title}](${song.url})**`)
+      .setTitle("依家為你播放")
+      //.setURL("https://discord.js.org/")
+      // .setAuthor(
+      //   "SawaBot"
+      //   //"https://i.imgur.com/wSTFkRM.png",
+      //   //"https://discord.js.org"
+      // )
+      .setFooter(
+        "SawaBot"
+        //"https://i.imgur.com/wSTFkRM.png"
+      );
+    serverQueue.textChannel.send(playSongEmbed);
     console.log("playing: " + song.title);
   },
 };

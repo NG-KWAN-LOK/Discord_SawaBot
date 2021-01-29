@@ -96,7 +96,22 @@ client.on("message", async (message) => {
     }
   } catch (error) {
     console.error(error);
-    message.reply("唔知你打乜L野! 打「*h」睇下有乜指令先!");
+    const errorEmbed = new Discord.MessageEmbed()
+      .setColor("#FFF148")
+      .setDescription(`打「*h」睇下有乜指令先!`)
+      .setTitle("唔知你打乜L野!")
+      //.setURL("https://discord.js.org/")
+      // .setAuthor(
+      //   "SawaBot"
+      //   //"https://i.imgur.com/wSTFkRM.png",
+      //   //"https://discord.js.org"
+      // )
+      .setFooter(
+        "SawaBot"
+        //"https://i.imgur.com/wSTFkRM.png"
+      );
+    //message.reply("唔知你打乜L野! 打「*h」睇下有乜指令先!");
+    message.reply(errorEmbed);
   }
 });
 
